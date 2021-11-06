@@ -1,9 +1,21 @@
 // Light theme
 #app.day {
   --bodyBackground: #f4f6f8;
+  --titleColor: #19202d;
+  --mainTextColor: #6e8098;
+  --vacancyDescriptionColor: #6e8098;
+  --buttonBackgroundColor: #5964e0;
+  --buttonColor: #ffffff;
+  --footerBackground: #ffffff;
 }
 
 // Dark theme
 #app.night {
   --bodyBackground: #121721;
+  --titleColor: #ffffff;
+  --mainTextColor: #6e8098;
+  --vacancyDescriptionColor: #9daec2;
+  --buttonBackgroundColor: #5964e0;
+  --buttonColor: #ffffff;
+  --footerBackground: #19202d;
 }

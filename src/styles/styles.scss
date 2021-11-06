@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 @import './themes.scss';
+@import './footer.scss';
 
 * {
   margin: 0;
@@ -6,8 +8,18 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
 #app {
   min-height: 100vh;
   background: var(--bodyBackground);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 400;
 }
