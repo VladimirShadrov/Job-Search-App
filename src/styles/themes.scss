@@ -5,9 +5,17 @@
   --mainTextColor: #6e8098;
   --vacancyDescriptionColor: #6e8098;
   --buttonBackgroundColor: #5964e0;
+  --buttonHoverBackground: #939bf4;
   --buttonColor: #ffffff;
   --footerBackground: #ffffff;
+  --filterBackground: #ffffff;
+  --filterBorderColor: rgba(110, 128, 152, 0.2);
   --buttonHoverBackground: #939bf4;
+  --filterInputColor: #19202d;
+  --filterInputActiveBorder: #5964e0;
+  --filterCheckboxBackground: rgba(25, 32, 45, 0.1);
+  --filterCheckboxHover: rgba(89, 100, 224, 0.25);
+  --filterCheckboxActive: #5964e0;
 }
 
 // Dark theme
@@ -17,7 +25,15 @@
   --mainTextColor: #6e8098;
   --vacancyDescriptionColor: #9daec2;
   --buttonBackgroundColor: #5964e0;
+  --buttonHoverBackground: #939bf4;
   --buttonColor: #ffffff;
   --footerBackground: #19202d;
+  --filterBackground: #19202d;
+  --filterBorderColor: rgba(110, 128, 152, 0.2);
   --buttonHoverBackground: #939bf4;
+  --filterInputColor: #ffffff;
+  --filterInputActiveBorder: #5964e0;
+  --filterCheckboxBackground: rgba(255, 255, 255, 0.1);
+  --filterCheckboxHover: rgba(89, 100, 224, 0.25);
+  --filterCheckboxActive: #5964e0;
 }

@@ -1,0 +1,15 @@
+.vacancy {
+  width: 100%;
+  max-width: 1190px;
+  margin: 0 auto;
+  padding-top: 121px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media (max-width: 550px) {
+  .vacancy {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

@@ -1,0 +1,121 @@
+.vacancy__filters {
+  display: flex;
+  height: 80px;
+  border-radius: 6px;
+  background: var(--filterBackground);
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.vacancy__filters-item {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--filterBorderColor);
+  padding: 28px 32px;
+
+  &:first-child {
+    width: 41%;
+  }
+
+  &:nth-child(2) {
+    width: 27%;
+  }
+
+  &:last-child {
+    width: 31%;
+    border-right: none;
+  }
+}
+
+.vacancy__filters-item-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.vacancy__filters-item-input {
+  width: 67%;
+  border: none;
+  outline: none;
+  background: transparent;
+  height: 24px;
+  padding: 6px 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--filterInputColor);
+
+  &:focus {
+    border-right: 1px solid var(--filterInputActiveBorder);
+  }
+}
+
+.vacancy__filters-item-checkbox-wrapper {
+  margin-right: 26px;
+}
+
+.vacancy__filters-item-label {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.vacancy__filters-item-checkbox {
+  display: none;
+}
+
+.vacancy__filters-item-checkbox-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background: var(--filterCheckboxBackground);
+  cursor: pointer;
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--filterCheckboxHover);
+  }
+
+  & > svg {
+    transition: 0.3s;
+    opacity: 0;
+  }
+}
+
+.vacancy__filters-item-checkbox:checked ~ .vacancy__filters-item-checkbox-icon {
+  background: var(--filterCheckboxActive);
+
+  & > svg {
+    opacity: 1;
+  }
+}
+
+.vacancy__filters-item-fulltime-value {
+  font-weight: 700;
+  color: var(--titleColor);
+}
+
+.vacancy__filters-item-button {
+  font-weight: 700;
+  width: 123px;
+  height: 48px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: var(--buttonBackgroundColor);
+  color: var(--buttonColor);
+  font-size: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+}

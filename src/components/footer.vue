@@ -13,7 +13,8 @@
 <script>
 export default {
   name: 'v-footer',
+  data() {
+    return {};
+  },
 };
 </script>
-
-<style lang="scss"></style>
