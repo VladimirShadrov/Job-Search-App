@@ -44,4 +44,27 @@
   text-align: center;
   text-decoration: none;
   line-height: 48px;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+}
+
+@media (max-width: 550px) {
+  .footer {
+    padding: 24px;
+  }
+
+  .footer__container {
+    justify-content: center;
+  }
+
+  .footer__vacancy {
+    display: none;
+  }
+
+  .footer__button {
+    width: 100%;
+  }
 }

@@ -119,3 +119,36 @@
 .header__theme-switcher:checked ~ .header__switcher-control {
   left: 29px;
 }
+
+@media (max-width: 1150px) {
+  .header__background-triangle {
+    &:first-child {
+      transform: rotate(195deg);
+      left: -110px;
+      top: -170px;
+    }
+
+    &:nth-child(2) {
+      left: 30px;
+    }
+
+    &:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .header {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 32px;
+    height: 136px;
+    border-radius: 0;
+  }
+
+  .header__theme-day,
+  .header__checkbox-wrapper {
+    margin-right: 10px;
+  }
+}
