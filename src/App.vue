@@ -1,14 +1,30 @@
 <template>
-  <div id="app"></div>
+  <div id="app" :class="currentTheme">
+    <Header @setThemeValue="getThemeValue" />
+  </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/header.vue';
 
 export default {
   name: 'App',
-  components: {},
+  components: {
+    Header,
+  },
+  data() {
+    return {
+      currentTheme: 'day',
+    };
+  },
+  methods: {
+    getThemeValue(data) {
+      this.currentTheme = data;
+    },
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import './styles/styles.scss';
+</style>
