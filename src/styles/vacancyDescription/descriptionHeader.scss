@@ -1,0 +1,126 @@
+.description__headline {
+  display: flex;
+  margin-bottom: 32px;
+  background: var(--vacancyDescriptionHeaderBackground);
+  position: relative;
+  border-radius: 6px;
+}
+
+.description__headline-icon {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > svg {
+    transform: scale(2);
+  }
+}
+
+.description__headline-company {
+  width: 100%;
+  max-width: 300px;
+  padding: 40px;
+}
+
+.description__headline-company-title {
+  margin-bottom: 13px;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--titleColor);
+}
+
+.description__headline-company-site {
+  color: var(--mainTextColor);
+}
+
+.description__headline-button-wrapper {
+  width: 100%;
+  max-width: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: auto;
+}
+
+.description__headline-company-button {
+  width: 147px;
+  height: 48px;
+  transition: 0.3s;
+  background: var(--vacancyDescriptionHeaderButtonBg);
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+  font-weight: 700;
+  color: var(--vacancyDescriptionHeaderButtonColor);
+  font-size: 16px;
+  line-height: 48px;
+  display: block;
+
+  &:hover {
+    background: var(--vacancyDescriptionHeaderButtonHover);
+  }
+
+  &:first-child {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .description__headline-company {
+    max-width: 220px;
+  }
+
+  .description__headline-button-wrapper {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .description__headline {
+    flex-direction: column;
+  }
+
+  .description__headline-company {
+    max-width: 100%;
+  }
+
+  .description__headline-button-wrapper {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .description__headline-company-button {
+    &:last-child {
+      margin-bottom: 32px;
+    }
+  }
+
+  .description__headline-company {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 32px;
+  }
+
+  .description__headline-company-title,
+  .description__headline-company-site {
+    text-align: center;
+  }
+
+  .description__headline-icon {
+    position: absolute;
+    top: -25px;
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+
+    & > svg {
+      transform: scale(1);
+    }
+  }
+}

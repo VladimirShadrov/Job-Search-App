@@ -1,0 +1,16 @@
+.description {
+  width: 100%;
+  max-width: 810px;
+  margin: 0 auto;
+  padding-top: 121px;
+  padding-left: 40px;
+  padding-right: 40px;
+  position: relative;
+}
+
+@media (max-width: 550px) {
+  .description {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

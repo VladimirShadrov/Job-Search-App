@@ -18,6 +18,10 @@
   --filterMobileIconBackground: #6e8098;
   --vacancyItemBackground: #ffffff;
   --vacancyEmployerLocationColor: #5964e0;
+  --vacancyDescriptionHeaderBackground: #ffffff;
+  --vacancyDescriptionHeaderButtonBg: rgba(89, 100, 224, 0.1);
+  --vacancyDescriptionHeaderButtonHover: rgba(89, 100, 224, 0.35);
+  --vacancyDescriptionHeaderButtonColor: #5964e0;
 }
 
 // Dark theme
@@ -40,4 +44,8 @@
   --filterMobileIconBackground: #ffffff;
   --vacancyItemBackground: #19202d;
   --vacancyEmployerLocationColor: #5964e0;
+  --vacancyDescriptionHeaderBackground: #19202d;
+  --vacancyDescriptionHeaderButtonBg: rgba(255, 255, 255, 0.1);
+  --vacancyDescriptionHeaderButtonHover: rgba(255, 255, 255, 0.25);
+  --vacancyDescriptionHeaderButtonColor: #ffffff;
 }

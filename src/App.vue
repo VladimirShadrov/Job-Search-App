@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="currentTheme">
     <Header @setThemeValue="getThemeValue" />
-    <Vacancies />
+    <Vacancies v-if="vacancyIsVisible" />
     <Description />
     <Footer v-if="vacancyDescriptionVisible" />
   </div>
@@ -25,6 +25,8 @@ export default {
     return {
       currentTheme: 'day',
       vacancyDescriptionVisible: false,
+
+      vacancyIsVisible: false,
     };
   },
   methods: {

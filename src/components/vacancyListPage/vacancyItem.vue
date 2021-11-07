@@ -9,7 +9,7 @@
     <p class="vacancy__item-title">Senior Software Engineer</p>
     <p class="vacancy__item-employer">Scoot</p>
     <p class="vacancy__item-employer-location">United Kingdom</p>
-    <div class="vacancy__item-icon vacancy__item-icon-bg-orange">
+    <div class="vacancy__item-icon vacancy__item-icon-bg-scott">
       <svg
         width="40"
         height="12"
