@@ -3,15 +3,15 @@
     <Header @setThemeValue="getThemeValue" />
     <Vacancies v-if="vacancyIsVisible" />
     <Description />
-    <Footer v-if="vacancyDescriptionVisible" />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from './components/header.vue';
-import Footer from './components/footer.vue';
 import Vacancies from './components/vacancyListPage/vacancies.vue';
 import Description from './components/vacancyDescriptionPage/description.vue';
+import Footer from './components/footer.vue';
 
 export default {
   name: 'App',
@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       currentTheme: 'day',
-      vacancyDescriptionVisible: false,
 
       vacancyIsVisible: false,
     };

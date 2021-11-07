@@ -1,0 +1,154 @@
+.description__content {
+  margin-bottom: 80px;
+  padding: 48px;
+  background: var(--vacancyDescriptionHeaderBackground);
+  border-radius: 6px;
+}
+
+.description__content-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.description__vacancy-date {
+  color: var(--mainTextColor);
+  margin-bottom: 11px;
+}
+
+.description__vacancy-time {
+  margin-right: 6px;
+}
+
+.description__vacancy-text {
+  margin-right: 16px;
+}
+
+.description__vacancy-chart {
+  padding-left: 16px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--mainTextColor);
+  }
+}
+
+.description__vacancy-title {
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--titleColor);
+  margin-bottom: 14px;
+}
+
+.description__employer-location {
+  font-weight: 700;
+  color: var(--vacancyEmployerLocationColor);
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.description__headline-button {
+  width: 141px;
+  height: 48px;
+  color: var(--buttonColor);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: var(--buttonBackgroundColor);
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+}
+
+.description__about {
+  color: var(--mainTextColor);
+  margin-bottom: 24px;
+  line-height: 26px;
+}
+
+.description__title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 28px;
+  color: var(--titleColor);
+}
+
+.description__list {
+  padding-left: 16px;
+  margin-bottom: 48px;
+}
+
+.description__list-item {
+  color: var(--mainTextColor);
+  line-height: 26px;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.description__duties {
+  display: flex;
+  align-items: flex-start;
+}
+
+.description__duties-number {
+  font-weight: 700;
+  line-height: 26px;
+  color: #5964e0;
+  width: 30px;
+  margin-right: 25px;
+}
+
+.description__duties {
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.description__duties-text {
+  line-height: 26px;
+  color: var(--mainTextColor);
+}
+
+@media (max-width: 550px) {
+  .description__content {
+    padding: 40px 24px;
+  }
+
+  .description__content-headline {
+    flex-direction: column;
+  }
+
+  .description__vacancy {
+    margin-bottom: 50px;
+  }
+
+  .description__headline-button {
+    width: 100%;
+  }
+
+  .description__vacancy-title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
