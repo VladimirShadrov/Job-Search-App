@@ -1,0 +1,30 @@
+.vacancy__button-container {
+  margin-bottom: 104px;
+}
+
+.vacancy__button {
+  width: 141px;
+  height: 48px;
+  color: var(--buttonColor);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: var(--buttonBackgroundColor);
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--buttonHoverBackground);
+  }
+}
+
+@media (max-width: 950px) {
+  .vacancy__button-container {
+    margin-bottom: 61px;
+  }
+}

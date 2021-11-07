@@ -1,0 +1,28 @@
+.vacancyList {
+  width: 100%;
+  max-width: 1190px;
+  margin-bottom: 56px;
+}
+
+.vacancy__item-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: -30px -15px;
+}
+
+@media (max-width: 950px) {
+  .vacancy__item-wrapper {
+    margin: -30px -6px;
+  }
+}
+
+@media (max-width: 550px) {
+  .vacancyList {
+    margin-bottom: 32px;
+  }
+
+  .vacancy__item-wrapper {
+    margin: -25px 0;
+  }
+}

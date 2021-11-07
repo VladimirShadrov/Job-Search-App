@@ -122,6 +122,7 @@
         class="vacancy__filters-modal"
         v-if="isVisible"
         :class="{ 'v-tansparent': isTransparent }"
+        @mousedown="closeModal"
       >
         <div
           class="vacancy__filters-modal-container"
@@ -179,10 +180,10 @@
               </span>
             </label>
             <button
-              @click.stop="closeModal"
               class="
                 vacancy__filters-item-button vacancy__filters-item-button-modal
               "
+              @mousedown.stop="closeModal"
             >
               Search
             </button>
@@ -209,11 +210,16 @@ export default {
 
       setTimeout(() => (this.isTransparent = !this.isTransparent), 100);
     },
-    closeModal() {
-      document.body.classList.remove('position-fixed');
-      this.isTransparent = !this.isTransparent;
+    closeModal(event) {
+      if (
+        event.target.classList.contains('vacancy__filters-modal') ||
+        event.target.classList.contains('vacancy__filters-item-button-modal')
+      ) {
+        document.body.classList.remove('position-fixed');
+        this.isTransparent = !this.isTransparent;
 
-      setTimeout(() => (this.isVisible = !this.isVisible), 300);
+        setTimeout(() => (this.isVisible = !this.isVisible), 300);
+      }
     },
   },
 };
