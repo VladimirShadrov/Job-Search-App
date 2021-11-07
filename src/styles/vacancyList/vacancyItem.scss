@@ -11,6 +11,7 @@
 .vacancy__item-date {
   margin-bottom: 16px;
   color: var(--mainTextColor);
+  pointer-events: none;
 }
 
 .vacancy__item-time {
@@ -43,11 +44,22 @@
   color: var(--titleColor);
   font-size: 20px;
   line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--mainTextColor);
+  }
+}
+
+.v-router {
+  text-decoration: none;
 }
 
 .vacancy__item-employer {
   margin-bottom: 44px;
   color: var(--mainTextColor);
+  pointer-events: none;
 }
 
 .vacancy__item-employer-location {
@@ -55,6 +67,7 @@
   color: var(--vacancyEmployerLocationColor);
   font-size: 14px;
   line-height: 14px;
+  pointer-events: none;
 }
 
 .vacancy__item-icon {

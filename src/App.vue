@@ -1,31 +1,25 @@
 <template>
   <div id="app" :class="currentTheme">
     <Header @setThemeValue="getThemeValue" />
-    <Vacancies v-if="vacancyIsVisible" />
-    <Description />
-    <Footer />
+    <router-view> </router-view>
+    <Footer v-if="isVacancyDescriptionVisible" />
   </div>
 </template>
 
 <script>
 import Header from './components/header.vue';
-import Vacancies from './components/vacancyListPage/vacancies.vue';
-import Description from './components/vacancyDescriptionPage/description.vue';
 import Footer from './components/footer.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
-    Vacancies,
-    Description,
     Footer,
   },
   data() {
     return {
       currentTheme: 'day',
-
-      vacancyIsVisible: false,
+      isVacancyDescriptionVisible: false,
     };
   },
   methods: {

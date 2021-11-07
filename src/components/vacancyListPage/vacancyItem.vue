@@ -6,7 +6,9 @@
       <span class="vacancy__item-text">ago</span>
       <span class="vacancy__item-chart">Full Time</span>
     </div>
-    <p class="vacancy__item-title">Senior Software Engineer</p>
+    <router-link class="v-router" :to="{ name: 'vacancy-description' }">
+      <p class="vacancy__item-title">Senior Software Engineer</p>
+    </router-link>
     <p class="vacancy__item-employer">Scoot</p>
     <p class="vacancy__item-employer-location">United Kingdom</p>
     <div class="vacancy__item-icon vacancy__item-icon-bg-scott">

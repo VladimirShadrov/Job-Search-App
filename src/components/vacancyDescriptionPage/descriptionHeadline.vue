@@ -25,7 +25,13 @@
         Company Site
       </a>
 
-      <a href="#" class="description__headline-company-button"> Back </a>
+      <router-link
+        class="router"
+        style="text-decoration: none"
+        :to="{ name: 'vacancies' }"
+      >
+        <a href="/" class="description__headline-company-button"> Back </a>
+      </router-link>
     </div>
   </div>
 </template>
