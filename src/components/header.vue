@@ -120,20 +120,41 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'v-header',
   data() {
-    return {
-      theme: 'day',
-    };
+    return {};
   },
   methods: {
-    toMainPage() {},
-    switchTheme() {
-      this.theme === 'day' ? (this.theme = 'night') : (this.theme = 'day');
-      this.$refs.headerCheckbox.checked = !this.$refs.headerCheckbox.checked;
-      this.$emit('setThemeValue', this.theme);
+    ...mapActions(['TOGGLE_THEME']),
+    setThemeToStorage() {
+      if (!localStorage.getItem('theme')) {
+        localStorage.setItem('theme', 'day');
+      }
     },
+    switchThemeCheckbox() {
+      setTimeout(() => {
+        this.CURRENT_SITE_THEME === 'day'
+          ? (this.$refs.headerCheckbox.checked = false)
+          : (this.$refs.headerCheckbox.checked = true);
+      }, 0);
+
+      // console.log(this.CURRENT_SITE_THEME);
+    },
+
+    switchTheme() {
+      this.switchThemeCheckbox();
+      this.TOGGLE_THEME();
+    },
+  },
+  computed: {
+    ...mapGetters(['CURRENT_SITE_THEME']),
+  },
+  mounted() {
+    this.setThemeToStorage();
+    this.switchThemeCheckbox();
   },
 };
 </script>

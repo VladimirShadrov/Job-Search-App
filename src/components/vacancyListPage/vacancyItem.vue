@@ -7,7 +7,9 @@
       <span class="vacancy__item-chart">Full Time</span>
     </div>
     <router-link class="v-router" :to="{ name: 'vacancy-description' }">
-      <p class="vacancy__item-title">Senior Software Engineer</p>
+      <p class="vacancy__item-title" @click="showFooter">
+        Senior Software Engineer
+      </p>
     </router-link>
     <p class="vacancy__item-employer">Scoot</p>
     <p class="vacancy__item-employer-location">United Kingdom</p>
@@ -31,7 +33,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'VacancyItem',
+  methods: {
+    ...mapActions(['TOGGLE_FOOTER_VISIBILITY']),
+    showFooter() {
+      this.TOGGLE_FOOTER_VISIBILITY();
+    },
+  },
 };
 </script>

@@ -30,14 +30,28 @@
         style="text-decoration: none"
         :to="{ name: 'vacancies' }"
       >
-        <a href="/" class="description__headline-company-button"> Back </a>
+        <a
+          href="/"
+          class="description__headline-company-button"
+          @click="hideFooter"
+        >
+          Back
+        </a>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'DescriptionHeadline',
+  methods: {
+    ...mapActions(['TOGGLE_FOOTER_VISIBILITY']),
+    hideFooter() {
+      this.TOGGLE_FOOTER_VISIBILITY();
+    },
+  },
 };
 </script>

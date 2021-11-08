@@ -1,14 +1,15 @@
 <template>
-  <div id="app" :class="currentTheme">
-    <Header @setThemeValue="getThemeValue" />
+  <div id="app" :class="CURRENT_SITE_THEME">
+    <Header />
     <router-view> </router-view>
-    <Footer v-if="isVacancyDescriptionVisible" />
+    <Footer v-if="FOOTER_STATE" />
   </div>
 </template>
 
 <script>
 import Header from './components/header.vue';
 import Footer from './components/footer.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -17,15 +18,24 @@ export default {
     Footer,
   },
   data() {
-    return {
-      currentTheme: 'day',
-      isVacancyDescriptionVisible: false,
-    };
+    return {};
   },
   methods: {
+    ...mapActions(['SET_FOOTER_STATE']),
     getThemeValue(data) {
       this.currentTheme = data;
     },
+    setFooterStateToStorage() {
+      if (!localStorage.getItem('isFooterVisible')) {
+        localStorage.setItem('isFooterVisible', false);
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(['FOOTER_STATE', 'CURRENT_SITE_THEME']),
+  },
+  mounted() {
+    this.setFooterStateToStorage();
   },
 };
 </script>
