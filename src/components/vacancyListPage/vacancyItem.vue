@@ -1,5 +1,5 @@
 <template>
-  <div class="vacancy__item">
+  <div class="vacancy__item" @click="findSelectedVacancy(vacanciesDataItem)">
     <div class="vacancy__item-date">
       <span class="vacancy__item-value">{{ vacanciesDataItem.date }}</span>
       <span class="vacancy__item-time">{{ vacanciesDataItem.time }}</span>
@@ -39,9 +39,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['TOGGLE_FOOTER_VISIBILITY']),
+    ...mapActions(['TOGGLE_FOOTER_VISIBILITY', 'GET_SELECTED_VACANCY']),
     showFooter() {
       this.TOGGLE_FOOTER_VISIBILITY();
+    },
+    findSelectedVacancy(item) {
+      this.GET_SELECTED_VACANCY(item);
     },
   },
 };

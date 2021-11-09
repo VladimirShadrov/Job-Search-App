@@ -2,8 +2,8 @@
   <div class="vacancyList">
     <div class="vacancy__item-wrapper">
       <VacancyItem
-        v-for="(vacancy, index) in vacanciesData"
-        :key="index"
+        v-for="vacancy in currentVacacyList"
+        :key="vacancy.id"
         :vacanciesDataItem="vacancy"
       />
     </div>
@@ -12,18 +12,31 @@
 
 <script>
 import VacancyItem from './vacancyItem.vue';
-
-import data from '../../data/data';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'VacancyList',
   components: {
     VacancyItem,
   },
+
   data() {
-    return {
-      vacanciesData: JSON.parse(data),
-    };
+    return {};
+  },
+
+  methods: {
+    ...mapActions(['GET_VACANCIES_FOR_VACANCY_LIST']),
+  },
+
+  computed: {
+    ...mapGetters(['CURRENT_VACANCIES_NUMBER']),
+    currentVacacyList() {
+      return this.CURRENT_VACANCIES_NUMBER;
+    },
+  },
+
+  mounted() {
+    this.GET_VACANCIES_FOR_VACANCY_LIST();
   },
 };
 </script>
