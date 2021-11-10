@@ -40,6 +40,19 @@ const store = new Vuex.Store({
         sessionStorage.getItem('selectedVacancy')
       );
     },
+
+    INCREASE_VACANCY_LIST(state) {
+      state.vacancyNumberForList += 3;
+
+      if (state.vacancyNumberForList >= state.allVacancies.length) {
+        state.vacancyNumberForList = state.allVacancies.length;
+      }
+
+      state.vacancyForVacancyListArray = state.allVacancies.slice(
+        0,
+        state.vacancyNumberForList
+      );
+    },
   },
 
   actions: {
@@ -59,6 +72,10 @@ const store = new Vuex.Store({
 
     GET_SELECTED_VACANCY(context, vacancy) {
       context.commit('FIND_SELECTED_VACANCY', vacancy);
+    },
+
+    INCREACE_VACANCY_NUMBER(context) {
+      context.commit('INCREASE_VACANCY_LIST');
     },
   },
 
