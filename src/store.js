@@ -53,6 +53,10 @@ const store = new Vuex.Store({
         state.vacancyNumberForList
       );
     },
+
+    SORT_VACANCIES(state, vacancies) {
+      state.vacancyForVacancyListArray = vacancies;
+    },
   },
 
   actions: {
@@ -77,6 +81,10 @@ const store = new Vuex.Store({
     INCREACE_VACANCY_NUMBER(context) {
       context.commit('INCREASE_VACANCY_LIST');
     },
+
+    CHANGE_VACANCY_LIST(context, sortedVacancy) {
+      context.commit('SORT_VACANCIES', sortedVacancy);
+    },
   },
 
   getters: {
@@ -94,6 +102,10 @@ const store = new Vuex.Store({
 
     SELECTED_VACANCY(state) {
       return state.selectedVacancy;
+    },
+
+    CURRENT_VACANCY_LIST(state) {
+      return state.vacancyForVacancyListArray;
     },
   },
 });

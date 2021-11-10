@@ -22,6 +22,8 @@
           type="text"
           class="vacancy__filters-item-input"
           placeholder="Filter by title, companies, expertise…"
+          v-model="filterByTitle"
+          @keydown.enter="filterVacancyByName"
         />
       </div>
 
@@ -46,13 +48,19 @@
           type="text"
           class="vacancy__filters-item-input"
           placeholder="Filter by location…"
+          v-model="filterByLocation"
+          @keydown.enter="filterVacancyByLocation"
         />
       </div>
 
       <div class="vacancy__filters-item">
         <div class="vacancy__filters-item-checkbox-wrapper">
-          <label class="vacancy__filters-item-label">
-            <input type="checkbox" class="vacancy__filters-item-checkbox" />
+          <label class="vacancy__filters-item-label" @click="filterByTime">
+            <input
+              type="checkbox"
+              class="vacancy__filters-item-checkbox"
+              ref="checkboxDesktop"
+            />
             <span class="vacancy__filters-item-checkbox-icon">
               <svg
                 width="15"
@@ -76,7 +84,12 @@
             </span>
           </label>
         </div>
-        <button class="vacancy__filters-item-button">Search</button>
+        <button
+          class="vacancy__filters-item-button"
+          @click="filterVacancyByAllFilters"
+        >
+          Search
+        </button>
       </div>
     </div>
 
@@ -86,6 +99,8 @@
           type="text"
           class="vacancy__filters-mobile-input"
           placeholder="Filter by title, companies, expertise"
+          v-model="filterByTitle"
+          @keydown.enter="filterVacancyByName"
         />
         <div class="vacancy__filters-mobile-filter-icon" @click="openModal">
           <svg
@@ -150,6 +165,8 @@
               type="text"
               class="vacancy__filters-modal-item-input"
               placeholder="Filter by location…"
+              v-model="filterByLocation"
+              @keydown.enter="filterVacancyByLocation"
             />
           </div>
 
@@ -158,8 +175,13 @@
               class="
                 vacancy__filters-item-label vacancy__filters-item-label-mobile
               "
+              @click="filterByTime"
             >
-              <input type="checkbox" class="vacancy__filters-item-checkbox" />
+              <input
+                type="checkbox"
+                class="vacancy__filters-item-checkbox"
+                ref="checkboxDesktop"
+              />
               <span class="vacancy__filters-item-checkbox-icon">
                 <svg
                   width="15"
@@ -184,6 +206,7 @@
                 vacancy__filters-item-button vacancy__filters-item-button-modal
               "
               @mousedown.stop="closeModal"
+              @click="filterVacancyByAllFilters"
             >
               Search
             </button>
@@ -195,15 +218,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'VacancyFilters',
   data() {
     return {
       isVisible: false,
       isTransparent: true,
+      filterByTitle: '',
+      filterByLocation: '',
+      filterByFullTime: false,
     };
   },
   methods: {
+    ...mapActions(['CHANGE_VACANCY_LIST']),
     openModal() {
       this.isVisible = !this.isVisible;
       document.body.classList.add('position-fixed');
@@ -220,6 +249,95 @@ export default {
 
         setTimeout(() => (this.isVisible = !this.isVisible), 300);
       }
+    },
+
+    filterVacancyByName() {
+      const currentVacancies = this.currentVacancyList;
+
+      if (this.filterByTitle === '') {
+        return [];
+      } else {
+        const filtredVacancy = currentVacancies.filter((vacancy) => {
+          return (
+            vacancy.vacancyName
+              .toLowerCase()
+              .includes(this.filterByTitle.toLowerCase()) ||
+            vacancy.employer
+              .toLowerCase()
+              .includes(this.filterByTitle.toLowerCase())
+          );
+        });
+
+        this.CHANGE_VACANCY_LIST(filtredVacancy);
+        this.filterByTitle = '';
+
+        return filtredVacancy;
+      }
+    },
+
+    filterVacancyByLocation() {
+      const currentVacancies = this.currentVacancyList;
+
+      if (this.filterByLocation === '') {
+        return [];
+      } else {
+        const filtredVacancy = currentVacancies.filter((vacancy) => {
+          return vacancy.location
+            .toLowerCase()
+            .includes(this.filterByLocation.toLowerCase());
+        });
+
+        this.CHANGE_VACANCY_LIST(filtredVacancy);
+        this.filterByLocation = '';
+
+        return filtredVacancy;
+      }
+    },
+
+    filterByTime() {
+      const currentVacancies = this.currentVacancyList;
+
+      if (this.$refs.checkboxDesktop.checked) {
+        const filtredVacancy = currentVacancies.filter(
+          (vacancy) => vacancy.employment.toLowerCase() === 'full time'
+        );
+
+        return filtredVacancy;
+      } else {
+        return [];
+      }
+    },
+
+    filterVacancyByAllFilters() {
+      const vacancyByName = this.filterVacancyByName();
+      const vacancyByLocation = this.filterVacancyByLocation();
+      const vacancyByTime = this.filterByTime();
+
+      const filtredVacancies = [
+        ...vacancyByName,
+        ...vacancyByLocation,
+        ...vacancyByTime,
+      ];
+
+      const sortedVacancy = filtredVacancies.filter(
+        (vacancy, index) => filtredVacancies.indexOf(vacancy) === index
+      );
+
+      sortedVacancy.forEach((item) => console.log(item.id));
+
+      // const filtredVacancies = vacanciesByNameAndLocation.filter(
+      //   (vacancy) => vacancy.employment.toLowerCase() === 'full time'
+      // );
+
+      this.$refs.checkboxDesktop.checked = false;
+      this.CHANGE_VACANCY_LIST(sortedVacancy);
+    },
+  },
+
+  computed: {
+    ...mapGetters(['CURRENT_VACANCY_LIST']),
+    currentVacancyList() {
+      return this.CURRENT_VACANCY_LIST;
     },
   },
 };

@@ -6,6 +6,8 @@
   padding: 32px;
   padding-top: 49px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .vacancy__item-date {
@@ -68,6 +70,7 @@
   font-size: 14px;
   line-height: 14px;
   pointer-events: none;
+  margin-top: auto;
 }
 
 .vacancy__item-icon {
