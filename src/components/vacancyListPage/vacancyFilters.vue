@@ -247,7 +247,6 @@ export default {
     ]),
     openModal() {
       this.isVisible = !this.isVisible;
-      document.body.classList.add('position-fixed');
 
       setTimeout(() => (this.isTransparent = !this.isTransparent), 100);
     },
@@ -256,7 +255,6 @@ export default {
         event.target.classList.contains('vacancy__filters-modal') ||
         event.target.classList.contains('vacancy__filters-item-button-modal')
       ) {
-        document.body.classList.remove('position-fixed');
         this.isTransparent = !this.isTransparent;
 
         setTimeout(() => (this.isVisible = !this.isVisible), 300);
