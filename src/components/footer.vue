@@ -5,19 +5,38 @@
         <p class="footer__vacancy-title">{{ selectedVacancy.vacancyName }}</p>
         <p class="footer__company-title">So Digital Inc.</p>
       </div>
-      <a href="#" class="footer__button">Apply Now</a>
+      <a href="#" class="footer__button" @click.prevent="openModal">
+        Apply Now
+      </a>
     </div>
   </footer>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'v-footer',
   data() {
-    return {};
+    return {
+      textForModal: 'Thank you, your application has been accepted',
+    };
   },
+
+  methods: {
+    ...mapActions([
+      'CHANGE_MODAL_VISIBILITY',
+      'CHANGE_MODAL_TEXT',
+      'CHANGE_MODAL_TRANSPARENT',
+    ]),
+    openModal() {
+      this.CHANGE_MODAL_VISIBILITY();
+      this.CHANGE_MODAL_TEXT(this.textForModal);
+
+      setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
+    },
+  },
+
   computed: {
     ...mapGetters(['SELECTED_VACANCY']),
     selectedVacancy() {

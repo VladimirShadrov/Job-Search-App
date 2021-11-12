@@ -12,6 +12,11 @@ const store = new Vuex.Store({
     vacancyNumberForList: 12,
     vacancyForVacancyListArray: [],
     selectedVacancy: JSON.parse(sessionStorage.getItem('selectedVacancy')),
+    isModalVisible: false,
+    isModalTransparent: true,
+    modalText: '',
+    isModalExist: false,
+    isDataLoading: true,
   },
 
   mutations: {
@@ -57,6 +62,21 @@ const store = new Vuex.Store({
     SORT_VACANCIES(state, vacancies) {
       state.vacancyForVacancyListArray = vacancies;
     },
+
+    MODAL_VISIBILITY_CHANGE(state) {
+      state.isModalVisible = !state.isModalVisible;
+      state.isModalExist = !state.isModalExist;
+
+      console.log('Modal visible from store: ', state.isModalExist);
+    },
+
+    MODAL_TEXT_CHANGE(state, text) {
+      state.modalText = text;
+    },
+
+    MODAL_TRANSPARENT_CHANGE(state) {
+      state.isModalTransparent = !state.isModalTransparent;
+    },
   },
 
   actions: {
@@ -85,6 +105,18 @@ const store = new Vuex.Store({
     CHANGE_VACANCY_LIST(context, sortedVacancy) {
       context.commit('SORT_VACANCIES', sortedVacancy);
     },
+
+    CHANGE_MODAL_VISIBILITY(context) {
+      context.commit('MODAL_VISIBILITY_CHANGE');
+    },
+
+    CHANGE_MODAL_TEXT(context, text) {
+      context.commit('MODAL_TEXT_CHANGE', text);
+    },
+
+    CHANGE_MODAL_TRANSPARENT(context) {
+      context.commit('MODAL_TRANSPARENT_CHANGE');
+    },
   },
 
   getters: {
@@ -106,6 +138,22 @@ const store = new Vuex.Store({
 
     CURRENT_VACANCY_LIST(state) {
       return state.vacancyForVacancyListArray;
+    },
+
+    MODAL_VISIBILITY(state) {
+      return state.isModalVisible;
+    },
+
+    MODAL_TEXT(state) {
+      return state.modalText;
+    },
+
+    MODAL_TRANSPARENT(state) {
+      return state.isModalTransparent;
+    },
+
+    MODAL_EXIST(state) {
+      return state.isModalExist;
     },
   },
 });

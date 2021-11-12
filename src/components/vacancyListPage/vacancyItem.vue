@@ -1,5 +1,5 @@
 <template>
-  <div class="vacancy__item" @click="findSelectedVacancy(vacanciesDataItem)">
+  <div class="vacancy__item">
     <div class="vacancy__item-date">
       <span class="vacancy__item-value">{{ vacanciesDataItem.date }}</span>
       <span class="vacancy__item-time">{{ vacanciesDataItem.time }}</span>
@@ -9,7 +9,11 @@
       }}</span>
     </div>
     <router-link class="v-router" :to="{ name: 'vacancy-description' }">
-      <p class="vacancy__item-title" @click="showFooter">
+      <p
+        class="vacancy__item-title"
+        @click="showFooter"
+        @mousedown="findSelectedVacancy(vacanciesDataItem)"
+      >
         {{ vacanciesDataItem.vacancyName }}
       </p>
     </router-link>

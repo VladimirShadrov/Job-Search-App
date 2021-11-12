@@ -23,6 +23,7 @@
           class="vacancy__filters-item-input"
           placeholder="Filter by title, companies, expertise…"
           v-model="filterByTitle"
+          ref="filterByName"
           @keydown.enter="filterVacancyByName"
         />
       </div>
@@ -48,6 +49,7 @@
           type="text"
           class="vacancy__filters-item-input"
           placeholder="Filter by location…"
+          ref="filterByLocation"
           v-model="filterByLocation"
           @keydown.enter="filterVacancyByLocation"
         />
@@ -229,10 +231,17 @@ export default {
       filterByTitle: '',
       filterByLocation: '',
       filterByFullTime: false,
+      textForModal:
+        'We are very sorry, but the requested vacancies have not been found',
     };
   },
   methods: {
-    ...mapActions(['CHANGE_VACANCY_LIST']),
+    ...mapActions([
+      'CHANGE_VACANCY_LIST',
+      'CHANGE_MODAL_TEXT',
+      'CHANGE_MODAL_VISIBILITY',
+      'CHANGE_MODAL_TRANSPARENT',
+    ]),
     openModal() {
       this.isVisible = !this.isVisible;
       document.body.classList.add('position-fixed');
@@ -252,46 +261,58 @@ export default {
     },
 
     filterVacancyByName() {
-      const currentVacancies = this.currentVacancyList;
+      if (!this.$refs.filterByName.value) return [];
 
-      if (this.filterByTitle === '') {
-        return [];
+      let sortedVacancy = this.currentVacancyList.filter((vacancy) => {
+        return (
+          vacancy.vacancyName
+            .toLowerCase()
+            .includes(this.filterByTitle.toLowerCase()) ||
+          vacancy.employer
+            .toLowerCase()
+            .includes(this.filterByTitle.toLowerCase())
+        );
+      });
+
+      if (!sortedVacancy.length) {
+        this.CHANGE_MODAL_VISIBILITY();
+        this.CHANGE_MODAL_TEXT(this.textForModal);
+
+        console.log('Я отработал по названию вакансии');
+
+        setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
       } else {
-        const filtredVacancy = currentVacancies.filter((vacancy) => {
-          return (
-            vacancy.vacancyName
-              .toLowerCase()
-              .includes(this.filterByTitle.toLowerCase()) ||
-            vacancy.employer
-              .toLowerCase()
-              .includes(this.filterByTitle.toLowerCase())
-          );
-        });
-
-        this.CHANGE_VACANCY_LIST(filtredVacancy);
-        this.filterByTitle = '';
-
-        return filtredVacancy;
+        this.CHANGE_VACANCY_LIST(sortedVacancy);
       }
+
+      this.filterByTitle = '';
+
+      return sortedVacancy;
     },
 
     filterVacancyByLocation() {
-      const currentVacancies = this.currentVacancyList;
+      if (!this.$refs.filterByLocation.value) return [];
 
-      if (this.filterByLocation === '') {
-        return [];
+      let filtredVacancy = this.currentVacancyList.filter((vacancy) => {
+        return vacancy.location
+          .toLowerCase()
+          .includes(this.filterByLocation.toLowerCase());
+      });
+
+      if (!filtredVacancy.length) {
+        this.CHANGE_MODAL_VISIBILITY();
+        this.CHANGE_MODAL_TEXT(this.textForModal);
+
+        console.log('Я отработал по расположению');
+
+        setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
       } else {
-        const filtredVacancy = currentVacancies.filter((vacancy) => {
-          return vacancy.location
-            .toLowerCase()
-            .includes(this.filterByLocation.toLowerCase());
-        });
-
         this.CHANGE_VACANCY_LIST(filtredVacancy);
-        this.filterByLocation = '';
-
-        return filtredVacancy;
       }
+
+      this.filterByLocation = '';
+
+      return filtredVacancy;
     },
 
     filterByTime() {
@@ -313,6 +334,12 @@ export default {
       const vacancyByLocation = this.filterVacancyByLocation();
       const vacancyByTime = this.filterByTime();
 
+      if (this.MODAL_EXIST) {
+        console.log('Отработало открытие вакансии из функций выше');
+        this.CHANGE_MODAL_VISIBILITY();
+        this.CHANGE_MODAL_TRANSPARENT();
+      }
+
       const filtredVacancies = [
         ...vacancyByName,
         ...vacancyByLocation,
@@ -323,19 +350,25 @@ export default {
         (vacancy, index) => filtredVacancies.indexOf(vacancy) === index
       );
 
-      sortedVacancy.forEach((item) => console.log(item.id));
-
-      // const filtredVacancies = vacanciesByNameAndLocation.filter(
-      //   (vacancy) => vacancy.employment.toLowerCase() === 'full time'
-      // );
+      console.log('Sorted vacancies: ', sortedVacancy);
 
       this.$refs.checkboxDesktop.checked = false;
-      this.CHANGE_VACANCY_LIST(sortedVacancy);
+
+      if (sortedVacancy.length) {
+        this.CHANGE_VACANCY_LIST(sortedVacancy);
+      } else {
+        if (!this.MODAL_EXIST) {
+          this.CHANGE_MODAL_VISIBILITY();
+          this.CHANGE_MODAL_TEXT(this.textForModal);
+          setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
+        }
+      }
     },
   },
 
   computed: {
-    ...mapGetters(['CURRENT_VACANCY_LIST']),
+    ...mapGetters(['CURRENT_VACANCY_LIST', 'MODAL_EXIST']),
+
     currentVacancyList() {
       return this.CURRENT_VACANCY_LIST;
     },

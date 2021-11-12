@@ -21,7 +21,9 @@
           {{ selectedVacancy.location }}
         </p>
       </div>
-      <button class="description__headline-button">Apply Now</button>
+      <button class="description__headline-button" @mousedown="openModal">
+        Apply Now
+      </button>
     </div>
     <p class="description__about">
       {{ selectedVacancy.aboutCompany }}
@@ -63,10 +65,30 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'DescriptionContent',
+
+  data() {
+    return {
+      textForModal: 'Thank you! Your application has been accepted',
+    };
+  },
+
+  methods: {
+    ...mapActions([
+      'CHANGE_MODAL_VISIBILITY',
+      'CHANGE_MODAL_TEXT',
+      'CHANGE_MODAL_TRANSPARENT',
+    ]),
+    openModal() {
+      this.CHANGE_MODAL_VISIBILITY();
+      this.CHANGE_MODAL_TEXT(this.textForModal);
+
+      setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
+    },
+  },
 
   computed: {
     ...mapGetters(['SELECTED_VACANCY']),
