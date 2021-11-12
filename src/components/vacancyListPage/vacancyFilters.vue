@@ -118,7 +118,10 @@
             />
           </svg>
         </div>
-        <button class="vacancy__filters-mobile-button">
+        <button
+          class="vacancy__filters-mobile-button"
+          @click="filterVacancyByName"
+        >
           <svg
             width="20"
             height="20"
@@ -307,6 +310,12 @@ export default {
       }
 
       this.filterByLocation = '';
+
+      if (this.isVisible) {
+        document.body.classList.remove('position-fixed');
+        this.isTransparent = !this.isTransparent;
+        setTimeout(() => (this.isVisible = !this.isVisible), 300);
+      }
 
       return filtredVacancy;
     },

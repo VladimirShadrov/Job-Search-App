@@ -203,6 +203,10 @@
   &:hover {
     background: var(--buttonHoverBackground);
   }
+
+  & > svg {
+    pointer-events: none;
+  }
 }
 
 .vacancy__filters-modal {
