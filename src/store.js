@@ -98,6 +98,11 @@ const store = new Vuex.Store({
     GET_VACANCIES_FOR_VACANCY_LIST(context) {
       context.commit('HIDES_FOOTER');
 
+      if (this.state.isModalVisible && !this.isModalTransparent) {
+        context.commit('MODAL_VISIBILITY_CHANGE');
+        context.commit('MODAL_TRANSPARENT_CHANGE');
+      }
+
       setTimeout(() => {
         const vacancyNumber = this.state.vacancyNumberForList;
         context.commit('CHANGE_VACANCY_FOR_VACANCY_LIST', vacancyNumber);
