@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="CURRENT_SITE_THEME" class="{'data-loading', }">
+  <div id="app" :class="CURRENT_SITE_THEME">
     <Header />
     <router-view> </router-view>
     <Footer v-if="FOOTER_STATE" />

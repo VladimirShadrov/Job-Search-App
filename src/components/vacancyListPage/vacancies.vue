@@ -1,5 +1,5 @@
 <template>
-  <div class="vacancy">
+  <div class="vacancy" :class="{ 'data-loading': DATA_LOADING }">
     <VacancyFilters />
     <VacansyList />
     <VacancyButton />
@@ -10,6 +10,7 @@
 import VacancyFilters from './vacancyFilters.vue';
 import VacansyList from './vacancyList.vue';
 import VacancyButton from './vacancyButton.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Vacancies',
@@ -17,6 +18,9 @@ export default {
     VacancyFilters,
     VacansyList,
     VacancyButton,
+  },
+  computed: {
+    ...mapGetters(['DATA_LOADING']),
   },
 };
 </script>

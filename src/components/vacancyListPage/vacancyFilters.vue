@@ -278,8 +278,6 @@ export default {
         this.CHANGE_MODAL_VISIBILITY();
         this.CHANGE_MODAL_TEXT(this.textForModal);
 
-        console.log('Я отработал по названию вакансии');
-
         setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
       } else {
         this.CHANGE_VACANCY_LIST(sortedVacancy);
@@ -302,8 +300,6 @@ export default {
       if (!filtredVacancy.length) {
         this.CHANGE_MODAL_VISIBILITY();
         this.CHANGE_MODAL_TEXT(this.textForModal);
-
-        console.log('Я отработал по расположению');
 
         setTimeout(() => this.CHANGE_MODAL_TRANSPARENT(), 100);
       } else {
@@ -335,7 +331,6 @@ export default {
       const vacancyByTime = this.filterByTime();
 
       if (this.MODAL_EXIST) {
-        console.log('Отработало открытие вакансии из функций выше');
         this.CHANGE_MODAL_VISIBILITY();
         this.CHANGE_MODAL_TRANSPARENT();
       }
@@ -349,8 +344,6 @@ export default {
       const sortedVacancy = filtredVacancies.filter(
         (vacancy, index) => filtredVacancies.indexOf(vacancy) === index
       );
-
-      console.log('Sorted vacancies: ', sortedVacancy);
 
       this.$refs.checkboxDesktop.checked = false;
 

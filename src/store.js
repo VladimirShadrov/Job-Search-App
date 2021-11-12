@@ -25,6 +25,11 @@ const store = new Vuex.Store({
       sessionStorage.setItem('isFooterVisible', state.isFooterVisible);
     },
 
+    HIDES_FOOTER(state) {
+      state.isFooterVisible = false;
+      sessionStorage.setItem('isFooterVisible', state.isFooterVisible);
+    },
+
     CHANGE_THEME(state) {
       state.siteTheme === 'day'
         ? (state.siteTheme = 'night')
@@ -59,6 +64,10 @@ const store = new Vuex.Store({
       );
     },
 
+    CHANGE_LOADING_CLASS(state) {
+      state.isDataLoading = !state.isDataLoading;
+    },
+
     SORT_VACANCIES(state, vacancies) {
       state.vacancyForVacancyListArray = vacancies;
     },
@@ -66,8 +75,6 @@ const store = new Vuex.Store({
     MODAL_VISIBILITY_CHANGE(state) {
       state.isModalVisible = !state.isModalVisible;
       state.isModalExist = !state.isModalExist;
-
-      console.log('Modal visible from store: ', state.isModalExist);
     },
 
     MODAL_TEXT_CHANGE(state, text) {
@@ -89,9 +96,16 @@ const store = new Vuex.Store({
     },
 
     GET_VACANCIES_FOR_VACANCY_LIST(context) {
-      const vacancyNumber = this.state.vacancyNumberForList;
+      context.commit('HIDES_FOOTER');
 
-      context.commit('CHANGE_VACANCY_FOR_VACANCY_LIST', vacancyNumber);
+      setTimeout(() => {
+        const vacancyNumber = this.state.vacancyNumberForList;
+        context.commit('CHANGE_VACANCY_FOR_VACANCY_LIST', vacancyNumber);
+
+        if (this.state.isDataLoading) {
+          context.commit('CHANGE_LOADING_CLASS');
+        }
+      }, 500);
     },
 
     GET_SELECTED_VACANCY(context, vacancy) {
@@ -99,7 +113,12 @@ const store = new Vuex.Store({
     },
 
     INCREACE_VACANCY_NUMBER(context) {
-      context.commit('INCREASE_VACANCY_LIST');
+      context.commit('CHANGE_LOADING_CLASS');
+
+      setTimeout(() => {
+        context.commit('INCREASE_VACANCY_LIST');
+        context.commit('CHANGE_LOADING_CLASS');
+      }, 500);
     },
 
     CHANGE_VACANCY_LIST(context, sortedVacancy) {
@@ -154,6 +173,10 @@ const store = new Vuex.Store({
 
     MODAL_EXIST(state) {
       return state.isModalExist;
+    },
+
+    DATA_LOADING(state) {
+      return state.isDataLoading;
     },
   },
 });
